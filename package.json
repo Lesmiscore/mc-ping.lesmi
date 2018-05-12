@@ -1,5 +1,5 @@
 {
-  "name": "mc-ping",
+  "name": "mc-ping.lesmi",
   "version": "1.0.0",
   "description": "Minecraft Ping library in Node.js",
   "main": "src/index.js",

@@ -4,6 +4,9 @@ class ByteWriter {
     constructor(initial) {
         this.data = initial ? initial : "";
     }
+    writeLong(value) {
+        this.data += util.int64ToHex(value);
+    }
     writeInt(value) {
         this.data += util.int32ToHex(value);
     }

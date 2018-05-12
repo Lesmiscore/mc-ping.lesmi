@@ -4,6 +4,9 @@ function padHex(hex, bytes) {
 function padHexEnd(hex, bytes) {
     return (hex + "00".repeat(bytes)).substring(0, bytes * 2);
 }
+function int64ToHex(value) {
+    return padHex(value.toString(16), 8);
+}
 function int32ToHex(value) {
     return padHex(value.toString(16), 4);
 }
@@ -27,5 +30,5 @@ function hexToString(hex) {
 
 module.exports = {
     int32ToHex, int8ToHex, padHex, eachCharsFromString,
-    hexToString, padHexEnd
+    hexToString, padHexEnd, int64ToHex
 };
