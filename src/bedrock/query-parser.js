@@ -3,7 +3,7 @@ const util = require("../utils/util");
 // https://github.com/Nukkit/Nukkit/blob/master/src/main/java/cn/nukkit/event/server/QueryRegenerateEvent.java
 // "splitnum" 00 80 00
 const bodyPadding = "73706c69746e756d008000";
-// 00 01 "player_" 00 00
+// 01 "player_" 00 00
 const middlePadding = "01706c617965725f0000";
 
 function splitAtNullByte(hex) {
