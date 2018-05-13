@@ -19,6 +19,16 @@ class ByteWriter {
     writeHex(hex) {
         this.data += hex;
     }
+    writeVarInt(value) {
+        while (true) {
+            if ((value & 0xFFFFFF80) == 0) {
+                this.writeByte(value);
+                return;
+            }
+            this.writeByte(value & 0x7F | 0x80);
+            value >>>= 7;
+        }
+    }
     toHex() {
         return this.data;
     }
