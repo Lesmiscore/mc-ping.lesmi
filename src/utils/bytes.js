@@ -10,6 +10,9 @@ class ByteWriter {
     writeInt(value) {
         this.data += util.int32ToHex(value);
     }
+    writeShort(value) {
+        this.data += util.int16ToHex(value);
+    }
     writeByte(value) {
         this.data += util.int8ToHex(value);
     }
@@ -37,4 +40,40 @@ class ByteWriter {
     }
 }
 
-module.exports = { ByteWriter };
+class StreamReader {
+    constructor(readable) {
+        this.r = readable;
+    }
+    readHex(size) {
+        return this.r.read(size).toString("hex");
+    }
+    readAsNumber(size) {
+        return parseInt(this.readHex(size), 16);
+    }
+    readByte() {
+        return this.readAsNumber(1);
+    }
+    readShort() {
+        return this.readAsNumber(2);
+    }
+    readUtfVarInt() {
+        const length = this.readVarInt();
+        const strData = this.readHex(length);
+        return util.hexToString(strData);
+    }
+    readVarInt() {
+        let i = 0;
+        let j = 0;
+        while (true) {
+            let k = this.readByte();
+            i |= (k & 0x7F) << j++ * 7;
+            if (j > 5)
+                throw new Error("VarInt too big");
+            if ((k & 0x80) != 128)
+                break;
+        }
+        return i;
+    }
+}
+
+module.exports = { ByteWriter, StreamReader };

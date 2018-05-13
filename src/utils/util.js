@@ -10,6 +10,9 @@ function int64ToHex(value) {
 function int32ToHex(value) {
     return padHex(value.toString(16), 4);
 }
+function int16ToHex(value) {
+    return padHex(value.toString(16), 2);
+}
 function int8ToHex(value) {
     return padHex(value.toString(16), 1);
 }
@@ -30,5 +33,5 @@ function hexToString(hex) {
 
 module.exports = {
     int32ToHex, int8ToHex, padHex, eachCharsFromString,
-    hexToString, padHexEnd, int64ToHex
+    hexToString, padHexEnd, int64ToHex, int16ToHex
 };
