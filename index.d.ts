@@ -1,6 +1,6 @@
 type FullStatData = {
     kv: string[],
-    playera: Map<string, string>
+    players: Map<string, string>
 }
 
 export = {

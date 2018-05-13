@@ -8,6 +8,8 @@ This library supports the following operations:
 - Query for Java Ed. servers
 
 # Usage
+All method returns Promise that resolve to result.
+
 ## Install
 
 ```
