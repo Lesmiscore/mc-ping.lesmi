@@ -8,6 +8,8 @@ const magicHex = "00ffff00fefefefefdfdfdfd12345678";
 function sendUcp(host, port) {
     return new Promise((resolve, reject) => {
         const client = dgram.createSocket("udp4");
+        let ok = false;
+
         function send(message) {
             client.send(message, 0, message.length, port, host, (err, bytes) => {
                 if (err) {
@@ -27,6 +29,8 @@ function sendUcp(host, port) {
             const byteLength = parseInt(hex.substr(66, 4), 16);
             const data = hex.substr(70, byteLength * 2);
             resolve(util.hexToString(data).split(";"));
+            ok = true;
+            client.close();
         });
 
         client.on("err", (err) => {
@@ -34,7 +38,11 @@ function sendUcp(host, port) {
             client.close();
         });
 
-        client.on("close", () => { });
+        client.on("close", () => {
+            if (!ok) {
+                reject("No result");
+            }
+        });
 
         const writer = new bytes.ByteWriter();
         writer.writeHex(ucpIdHex);

@@ -20,7 +20,7 @@ function sendQuery(host, port) {
         const client = dgram.createSocket("udp4");
         let state = States.HANDSHAKE;
         let token = null;
-        let result = null;
+        let ok = false;
         dbg("socket ready");
 
         function send(message) {
@@ -55,6 +55,7 @@ function sendQuery(host, port) {
                 case States.WAITING: {
                     // when we received the content
                     resolve(parser(msg));
+                    ok = true;
                     client.close();
                     break;
                 }
@@ -69,6 +70,9 @@ function sendQuery(host, port) {
 
         client.on("close", () => {
             dbg("closed");
+            if (!ok) {
+                reject("No result");
+            }
         });
 
         function fullStat() {
