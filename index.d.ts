@@ -8,7 +8,7 @@ export = {
         unconnectedPing: (host: string, port: number) => <string[]>Promise,
         fullStat: (host: string, port: number) => <FullStatData>Promise
     },
-    javaed: {
+    javaEd: {
         query: (host: string, port: number) => <any>Promise
     }
 }

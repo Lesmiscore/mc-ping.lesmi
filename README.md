@@ -31,6 +31,6 @@ require("mc-ping.lesmi").bedrock.fullStat('localhost', 19132);
 ## Query
 
 ```javascript
-require("mc-ping.lesmi").javaed.query('localhost', 25565);
+require("mc-ping.lesmi").javaEd.query('localhost', 25565);
 ```
 
