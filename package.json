@@ -7,6 +7,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "git://github.com/nao20010128nao/mc-ping.js.git",
+  "homepage": "https://github.com/nao20010128nao/mc-ping.js",
+  "bugs": {
+    "url": "https://github.com/nao20010128nao/mc-ping.js/issues"
+  },
+  "keywords": [
+    "minecraft",
+    "minecraft-query"
+  ],
   "author": "nao20010128nao",
   "license": "MIT"
 }
